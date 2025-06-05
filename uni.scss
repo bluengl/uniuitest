@@ -1,0 +1,200 @@
+@import '@/uni_modules/uni-scss/variables.scss';
+
+/* 主题颜色 */
+$theme-colors: (
+	primary: #FF6B6B,    // 活力红
+	secondary: #4ECDC4,  // 清新蓝绿
+	success: #95E1D3,    // 柔和绿
+	warning: #FFE66D,    // 明亮黄
+	info: #6C5CE7,      // 梦幻紫
+	accent: #FF8B94     // 粉红
+);
+
+/* 字体大小 */
+$font-sizes: (
+	xs: 12px,
+	sm: 14px,
+	base: 16px,
+	lg: 18px,
+	xl: 24px,
+	xxl: 32px
+);
+
+/* 圆角大小 */
+$border-radius: (
+	sm: 8px,
+	base: 12px,
+	lg: 16px,
+	xl: 24px,
+	round: 999px
+);
+
+/* 动画时间 */
+$animation-durations: (
+	fast: 0.2s,
+	base: 0.3s,
+	slow: 0.5s
+);
+
+/* 阴影效果 */
+$box-shadows: (
+	sm: 0 2px 4px rgba(0,0,0,0.1),
+	base: 0 4px 8px rgba(0,0,0,0.1),
+	lg: 0 8px 16px rgba(0,0,0,0.1)
+);
+
+/* 响应式断点 */
+$breakpoints: (
+	xs: 320px,
+	sm: 375px,
+	md: 414px,
+	lg: 768px
+);
+
+/* 全局混入 */
+@mixin button-base {
+	border-radius: map-get($border-radius, round);
+	padding: 12px 24px;
+	font-weight: bold;
+	transition: all map-get($animation-durations, base);
+	box-shadow: map-get($box-shadows, base);
+	
+	&:active {
+		transform: scale(0.95);
+		box-shadow: map-get($box-shadows, sm);
+	}
+}
+
+@mixin card-base {
+	background: #fff;
+	border-radius: map-get($border-radius, lg);
+	padding: 20px;
+	box-shadow: map-get($box-shadows, base);
+}
+
+@mixin flex-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* 动画关键帧 */
+@keyframes bounce {
+	0%, 100% { transform: translateY(0); }
+	50% { transform: translateY(-10px); }
+}
+
+@keyframes pop {
+	0% { transform: scale(1); }
+	50% { transform: scale(1.2); }
+	100% { transform: scale(1); }
+}
+
+@keyframes shake {
+	0%, 100% { transform: translateX(0); }
+	25% { transform: translateX(-5px); }
+	75% { transform: translateX(5px); }
+}
+
+@keyframes rotate {
+	from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
+}
+
+/* 响应式混入 */
+@mixin responsive($breakpoint) {
+	@media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+		@content;
+	}
+}
+
+/* uni.scss */
+// 基础字体大小
+$base-font-size: 16px !default;
+
+// 颜色变量
+$primary-color: #007AFF !default;
+$secondary-color: #00C6FF !default;
+$success-color: #4CD964 !default;
+$warning-color: #FF9500 !default;
+$error-color: #FF3B30 !default;
+$text-primary: #333333 !default;
+$text-secondary: #666666 !default;
+$text-light: #999999 !default;
+$background-light: #F5F5F5 !default;
+$white: #FFFFFF !default;
+
+// 渐变
+$gradient-primary: linear-gradient(135deg, $primary-color, $secondary-color) !default;
+$gradient-warm: linear-gradient(135deg, #FFE5F1, #E8F7FF) !default;
+$gradient-cool: linear-gradient(135deg, #E1F5FF, #F0F7FF) !default;
+
+// 间距
+$spacing-xs: 0.3125em !default;  // 5px
+$spacing-sm: 0.625em !default;   // 10px
+$spacing-md: 1.25em !default;    // 20px
+$spacing-lg: 1.875em !default;   // 30px
+$spacing-xl: 2.5em !default;     // 40px
+
+// 圆角
+$border-radius-sm: 0.3125em !default;   // 5px
+$border-radius-md: 0.625em !default;    // 10px
+$border-radius-lg: 1.25em !default;     // 20px
+$border-radius-xl: 1.875em !default;    // 30px
+
+// 阴影
+$shadow-sm: 0 0.125em 0.25em rgba(0, 0, 0, 0.1) !default;
+$shadow-md: 0 0.25em 0.75em rgba(0, 0, 0, 0.1) !default;
+$shadow-lg: 0 0.5em 1.5em rgba(0, 0, 0, 0.15) !default;
+
+// 动画时间
+$animation-fast: 0.2s !default;
+$animation-normal: 0.3s !default;
+$animation-slow: 0.4s !default;
+
+// 混合器
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(0.625em);
+}
+
+@mixin hover-effect {
+  transition: all $animation-normal ease;
+  
+  &:hover {
+    transform: translateY(-0.3125em);
+    box-shadow: $shadow-lg;
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+// 响应式断点
+$breakpoints: (
+  'sm': 20em,    // 320px
+  'md': 48em,    // 768px
+  'lg': 64em,    // 1024px
+  'xl': 80em     // 1280px
+) !default;
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}

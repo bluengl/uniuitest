@@ -1,0 +1,147 @@
+// 基准字体大小
+$base-font-size: 16px;
+
+// 颜色变量
+$primary-color: #007AFF;
+$secondary-color: #00C6FF;
+$success-color: #4CD964;
+$warning-color: #FF9500;
+$error-color: #FF3B30;
+$text-primary: #333;
+$text-secondary: #666;
+$text-light: #999999;
+$background-light: #fff;
+$white: #fff;
+
+// 渐变
+$gradient-primary: linear-gradient(135deg, #ffc6d6, #ebfbff);
+$gradient-warm: linear-gradient(135deg, #FFE5F1, #E8F7FF);
+$gradient-cool: linear-gradient(135deg, #E1F5FF, #F0F7FF);
+
+// 间距变量
+$spacing-xs: 0.25em;
+$spacing-sm: 0.5em;
+$spacing-md: 1em;
+$spacing-lg: 1.5em;
+$spacing-xl: 2em;
+
+// 圆角变量
+$border-radius-sm: 0.5em;
+$border-radius-md: 1em;
+$border-radius-lg: 1.5em;
+$border-radius-xl: 2em;
+$border-radius-full: 50%;
+
+// 阴影变量
+$shadow-sm: 0 0.125em 0.5em rgba(0, 0, 0, 0.1);
+$shadow-md: 0 0.25em 1em rgba(0, 0, 0, 0.1);
+$shadow-lg: 0 0.5em 2em rgba(0, 0, 0, 0.15);
+
+// 动画变量
+$transition-fast: 0.2s;
+$transition-normal: 0.3s;
+$transition-slow: 0.4s;
+$animation-normal: 0.6s;
+$ease-bounce: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+// 全局基础样式
+html {
+  font-size: $base-font-size;
+}
+
+/* #ifndef APP-NVUE */
+page {
+  background-color: $background-light;
+  font-size: 1rem;
+  color: $text-primary;
+}
+/* #endif */
+
+// 全局动画类
+.animated {
+  animation-duration: $animation-normal;
+  animation-fill-mode: both;
+}
+
+// 全局混入
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin glass-effect {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(0.625em);
+}
+
+@mixin hover-scale {
+  transition: transform $transition-normal $ease-bounce;
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@mixin hover-effect {
+  transition: all $transition-normal ease;
+  &:active {
+    transform: scale(0.98);
+    opacity: 0.9;
+  }
+}
+
+// 响应式断点
+$breakpoints: (
+  'sm': 20em,   // 320px
+  'md': 48em,   // 768px
+  'lg': 64em,   // 1024px
+  'xl': 80em    // 1280px
+);
+
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media screen and (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+}
+
+// 动画
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(1.25em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  50% { transform: scale(1.1); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+// 通用动画类
+.animated {
+  animation-duration: $animation-normal;
+  animation-fill-mode: both;
+}
+
+.fade-in { animation-name: fadeIn; }
+.slide-in-up { animation-name: slideInUp; }
+.pop { animation-name: pop; }
+
+// 延迟类
+@for $i from 0 through 5 {
+  .delay-#{$i} {
+    animation-delay: #{$i * 0.1}s;
+  }
+} 

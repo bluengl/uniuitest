@@ -1,0 +1,47 @@
+{
+	"pages": [{
+		"path": "pages/index/index",
+		"style": {
+			"navigationBarTitleText": "宝贝益智乐园"
+		}
+	}, {
+		"path": "pages/games/memory/index",
+		"style": {
+			"navigationBarTitleText": "记忆翻牌"
+		}
+	}, {
+		"path": "pages/games/math/index",
+		"style": {
+			"navigationBarTitleText": "趣味数学"
+		}
+	}, {
+		"path": "pages/games/puzzle/index",
+		"style": {
+			"navigationBarTitleText": "拼图游戏"
+		}
+	}, {
+		"path": "pages/games/connection/index",
+		"style": {
+			"navigationBarTitleText": "连线游戏"
+		}
+	}, {
+		"path": "pages/games/idiom/index",
+		"style": {
+			"navigationBarTitleText": "成语填空"
+		}
+	}, {
+		"path": "pages/games/mole/index",
+		"style": {
+			"navigationBarTitleText": "打地鼠"
+		}
+	}],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "宝贝益智乐园",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	}
+}
